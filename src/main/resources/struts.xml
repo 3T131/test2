@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <constant name="struts.custom.i18n.resources" value="UTF-8"/>
+    <package name="web" extends="struts-default">
+        <interceptors>
+            <interceptor name="userInterceptor" class="com.accp.Interceptor.UserInterCeptor"/>
+            <interceptor-stack name="mystack">
+                <interceptor-ref name="userInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="mystack"/>
+        <global-results>
+            <result name="Login">login.jsp</result>
+        </global-results>
+        <action name="userLogin" class="com.accp.action.Loginaction" method="login">
+            <result name="webIndex">index.jsp</result>
+            <result name="Login">login.jsp</result>
+        </action>
+        <action name="order" class="com.accp.action.OrderAction" >
+            <result>order.jsp</result>
+        </action>
+    </package>
+</struts>
